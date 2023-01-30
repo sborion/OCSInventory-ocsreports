@@ -23,7 +23,9 @@
 
 function get_affiche_methode(){
     if(AUTH_TYPE == 4){
-        return "SSO";
+	    return "SSO";
+    } else if (AUTH_TYPE == 7) {
+        return "SSO_ONLY";
     }else{
         return "HTML";
     }
@@ -74,7 +76,9 @@ function get_list_methode($identity = false){
                 );
             }
             break;
-        
+	case 7:
+		return array(0=>($identity)?"local.php":"sso_only.php");
+		break;
         default:
             return array(
                 0 => "local.php"
